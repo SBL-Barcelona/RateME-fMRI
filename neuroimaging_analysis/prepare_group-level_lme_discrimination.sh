@@ -13,7 +13,7 @@ echo -e "Subj\tFD\tTask\tFusion\tGender\tAge\tInputFile" > ${analysis_out}/Table
 
 fout=${folder}/Scripts/group_3dlme_discrimination.sh
 echo -e "cd ${analysis_out} " > ${fout}
-echo -e "3dLMEr -prefix ${analysis_out}/Results_discrimination-jobs 12 \\" >> ${fout}
+echo -e "3dLMEr -prefix ${analysis_out}/Results_discrimination -jobs 12 \\" >> ${fout}
 
 echo -e "\t-model 'FD+Task*Fusion+Age+Gender+(1|Subj)' -qVars 'Age,FD' \\" >> ${fout}
 echo -e "\t-bounds -2 2 -SS_type 3 \\" >> ${fout}
