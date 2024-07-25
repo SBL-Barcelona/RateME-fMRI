@@ -66,8 +66,8 @@ do
 			-Rvar ${OUT_FOLDER}/Decon_REML_block_var -Rglt ${OUT_FOLDER}/Decon_REML_block_cont \
 			-tout -Rerrts ${OUT_FOLDER}/Decon_REML_block_res -Rwherr ${OUT_FOLDER}/Decon_REML_block_wres
 		
-		3dTcat -prefix ${OUT_FOLDER}/${id}_task-${task}_space-MNI152NLin2009cAsym_firstlevel-res.nii.gz ${OUT_FOLDER}/Decon_REML_block_res+tlrc
-		3dTcat -prefix ${OUT_FOLDER}/${id}_task-${task}_space-MNI152NLin2009cAsym_firstlevel-cont.nii.gz ${OUT_FOLDER}/Decon_REML_block_cont+tlrc
-		3dTcat -prefix ${OUT_FOLDER}/${id}_task-${task}_space-MNI152NLin2009cAsym_firstlevel.nii.gz ${OUT_FOLDER}/Decon_REML_block+tlrc
+		3dTcat -prefix ${OUT_FOLDER}/${id}_task-${task}_space-MNI152NLin2009cAsym_individual-level-res.nii.gz ${OUT_FOLDER}/Decon_REML_block_res+tlrc
+		3dTcat -prefix ${OUT_FOLDER}/${id}_task-${task}_space-MNI152NLin2009cAsym_individual-level-cont.nii.gz ${OUT_FOLDER}/Decon_REML_block_cont+tlrc
+		3dTcat -prefix ${OUT_FOLDER}/${id}_task-${task}_space-MNI152NLin2009cAsym_individual-level.nii.gz ${OUT_FOLDER}/Decon_REML_block+tlrc
 	done
 done < ${FOLDER}/ids.txt

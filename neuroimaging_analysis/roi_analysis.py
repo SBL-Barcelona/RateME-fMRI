@@ -22,7 +22,7 @@ def roi_correlation(folder_individual, ids_file, roiFile, rois, score_file, fold
     groups = []
     print('Reading subjects data')
     for id in ids:
-        img = nib.load(os.path.join(folder_individual,id,'ratemepol/afni',id+'_task-ratemepol_space-MNI152NLin2009cAsym_firstlevel.nii.gz'))
+        img = nib.load(os.path.join(folder_individual,id,'ratemepol',id+'_task-ratemepol_space-MNI152NLin2009cAsym_individual-level.nii.gz'))
         imgs.append(index_img(img, 7))
         tags.append('ratemepol')
 
@@ -54,20 +54,20 @@ def roi_correlation(folder_individual, ids_file, roiFile, rois, score_file, fold
 
 
 def load_covariates(score_file):
-    fd_file = '/mnt/neuroimatge/neuroimatge/POLEX/covariates/fd_ratemepol_cent.csv'
+    fd_file = '/path/to/main/covariates/fd_ratemepol_cent.csv'
     file = open(fd_file, 'r')
     fd = np.asarray(list(file.read().splitlines())).astype(float)
 
-    age_file = '/mnt/neuroimatge/neuroimatge/POLEX/covariates/age_cent.csv'
+    age_file = '/path/to/main/covariates/age_cent.csv'
     file = open(age_file, 'r')
     age = np.asarray(list(file.read().splitlines())).astype(float)
 
-    fusion_file = "/mnt/neuroimatge/neuroimatge/POLEX/outputFiles/fusion_dych.csv"
+    fusion_file = "/path/to/main/covariates/fusion_dych.csv"
     file = open(fusion_file, 'r')
     fusion = np.asarray(list(file.read().splitlines())).astype(float)
     fusion[fusion==-1] = 0
 
-    gender_file = "/mnt/neuroimatge/neuroimatge/POLEX/outputFiles/gender.csv"
+    gender_file = "/path/to/main/covariates/gender.csv"
     file = open(gender_file, 'r')
     gender = np.asarray(list(file.read().splitlines())).astype(float)
     gender[gender==-1] = 0

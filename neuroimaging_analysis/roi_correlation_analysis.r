@@ -1,12 +1,12 @@
 library(FDRestimation)
 library(ggplot2)
 
-folder <-  "/home/luisman/Escritorio/Polex/fMRI"
+folder <-  "/path/to/main"
 folder_out <- paste(folder, "derivatives", "rois_correlation", sep = "/")
 
-fusion <- read.csv("/home/luisman/Escritorio/Polex/fMRI/covariates/fusion_dych.csv", sep = ",", header = FALSE)
-attitudes_data <- read.csv("/home/luisman/Escritorio/Polex/fMRI/covariates/attitudesMatrix.csv", header = TRUE, sep = ",")
-rois_data <- read.csv("/home/luisman/Escritorio/Polex/fMRI/derivatives/rois_correlation/rois_exclusion-mean.csv", sep = "\t")
+fusion <- read.csv(paste(folder,"covariates/fusion_dych.csv", sep = "/"), sep = ",", header = FALSE)
+attitudes_data <- read.csv(paste(folder, "covariates/attitudesMatrix.csv", sep = "/"), header = TRUE, sep = ",")
+rois_data <- read.csv(paste(folder, "derivatives/rois_correlation/rois_exclusion-mean.csv", sep = "/"), sep = "\t")
 
 join_data <- cbind(attitudes_data, rois_data)
 

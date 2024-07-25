@@ -1,5 +1,4 @@
-#!/bin/bash/
-
+/bin/bash: línea 1: wq: orden no encontrada
 FOLDER_DERIVS=/path/to/derivatives/
 MASK_FOLDER=/path/to/mask/dir/
 
@@ -71,11 +70,64 @@ done
 	-prefix ${FOLDER_DERIVS}/group-level/${task}/results_fig_fusion \
 	-set_xhairs OFF \
 	-montx 5 -monty 5 \
-	-label_mode 1 label_size 4 \
+	-label_mode 1 -label_size 4 \
 	-clusterize_wami AAL3v1
 
 
 #### Results of the comparison between different tasks
 
+	3dTcat -prefix ${FOLDER_DERIVS}/group-level/lme/group-level_discrimination/Results_discrimination.nii.gz \
+		${FOLDER_DERIVS}/group-level/lme/group-level_discrimination/Results_discrimination+tlrc
 
+	3dcalc -a ${FOLDER_DERIVS}/group-level/lme/group-level_discrimination/Results_discrimination.nii.gz \
+		-b ${FOLDER_DERIVS}/group-level/ratemepol/group_mask.nii.gz \
+		-prefix ${FOLDER_DERIVS}/group-level/lme/group-level_discrimination/Results_discrimination_masked.nii.gz \
+		-expr 'a*b'
+
+@chauffeur_afni -ulay ~/fsl/data/standard/MNI152_T1_1mm_brain.nii.gz \
+	-box_focus_slices  AMASK_FOCUS_OLAY \
+	-olay ${FOLDER_DERIVS}/group-level/lme/group-level_discrimination/Results_discrimination_masked.nii.gz \
+	-cbar Reds_and_Blues_Inv \
+	-ulay_range 0% 130% \
+	-func_range 5 \
+       	-set_subbricks -1 13 13 \
+	-clusterize "-NN 3 -clust_nvox 10 -mask ../ratemeper/magnitude/group_mask.nii.gz"
+	-thr_olay_p2stat 0.001 \
+	-thr_olay_pside bisided \
+	-olay_alpha Yes \
+	-olay_boxed Yes \
+	-opacity 5 \
+	-prefix ${FOLDER_DERIVS}/group-level/lme/group-level_discrimination/results_fig_discrimination \
+	-set_xhairs OFF \
+	-montx 5 -monty 5 \
+	-label_mode 1 -label_size 4 \
+	-clusterize_wami AAL3v1
+
+	
+	3dTcat -prefix ${FOLDER_DERIVS}/group-level/lme/group-level_personal/Results_personal.nii.gz \
+                ${FOLDER_DERIVS}/group-level/lme/group-level_personal/Results_personal+tlrc
+
+        3dcalc -a ${FOLDER_DERIVS}/group-level/lme/group-level_personal/Results_personal.nii.gz \
+                -b ${FOLDER_DERIVS}/group-level/ratemepol/group_mask.nii.gz \
+                -prefix ${FOLDER_DERIVS}/group-level/lme/group-level_personal/Results_personal_masked.nii.gz \
+                -expr 'a*b'
+
+@chauffeur_afni -ulay ~/fsl/data/standard/MNI152_T1_1mm_brain.nii.gz \
+        -box_focus_slices  AMASK_FOCUS_OLAY \
+        -olay ${FOLDER_DERIVS}/group-level/lme/group-level_personal/Results_personal_masked.nii.gz \
+        -cbar Reds_and_Blues_Inv \
+        -ulay_range 0% 130% \
+        -func_range 5 \
+        -set_subbricks -1 13 13 \                                                  
+        -clusterize "-NN 3 -clust_nvox 10 -mask ../ratemeper/magnitude/group_mask.nii.gz"
+        -thr_olay_p2stat 0.001 \
+        -thr_olay_pside bisided \
+   	-olay_alpha Yes \
+    	-olay_boxed Yes \
+    	-opacity 5 \
+  	-prefix ${FOLDER_DERIVS}/group-level/lme/group-level_personal/results_fig_personal \
+ 	-set_xhairs OFF \
+        -montx 5 -monty 5 \
+    	-label_mode 1 -label_size 4 \
+        -clusterize_wami AAL3v1
 
