@@ -1,0 +1,3 @@
+[submodule "rateme-app"]
+	path = rateme-app
+	url = git@github.com:LMarcos13/rateme-app.git
